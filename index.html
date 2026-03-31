@@ -1,103 +1,142 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cinnawon_ | Collector Profile</title>
-    <style>
-        :root {
-            --bg-color: #f0f4f8; /* Azul muy clarito */
-            --accent-color: #a5c9e1; /* Azul pastel */
-            --text-color: #4a5568;
-            --white: #ffffff;
-        }
+import React, { useState, useEffect } from 'react';
+import { Heart, XCircle, Mail, Music, MapPin, ExternalLink, Calendar Days, CloudDrizzle } from 'lucide-react';
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
+const CinnawonY2KProfile = () => {
+  // Estado para la hora en vivo
+  const [currentTime, setCurrentTime] = useState('');
 
-        .container {
-            background: var(--white);
-            max-width: 400px;
-            width: 100%;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            text-align: center;
-        }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            margin-bottom: 15px;
-            object-fit: cover;
-        }
+  return (
+    // Contenedor principal con fondo azul suave
+    <div className="min-h-screen bg-[#e0f2fe] flex items-center justify-center p-4 font-sans antialiased text-[#1e3a8a]">
+      {/* Ventana Principal Estilo Y2K */}
+      <div className="w-full max-w-[420px] bg-white border-2 border-[#bae6fd] rounded-lg shadow-[8px_8px_0px_#bae6fd] overflow-hidden">
+        
+        {/* Barra Superior de Sistema (Header) */}
+        <div className="bg-[#f0f9ff] border-b-2 border-[#bae6fd] p-2 flex items-center justify-between text-[11px] font-mono tracking-tight text-indigo-900">
+          <div className="flex items-center gap-2">
+            <span className="font-bold border border-indigo-200 px-1.5 py-0.5 rounded">+</span>
+            <span>BlueSkies</span>
+            <span className="font-semibold">24°c</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="w-3 h-3" />
+            <span>{currentTime}</span>
+            <span>| Sunday, Dec 21</span>
+          </div>
+        </div>
 
-        h1 { font-size: 1.5rem; margin-bottom: 5px; color: #2d3748; }
-        p.subtitle { font-size: 0.9rem; color: #718096; margin-bottom: 20px; }
+        {/* Perfil Principal (Avatar y Info) */}
+        <div className="p-5 flex items-start gap-4">
+          {/* Tu Avatar (Reemplaza con tu foto) */}
+          <div className="w-24 h-24 rounded-full border-4 border-[#e0f2fe] p-1 bg-white shadow-inner overflow-hidden flex-shrink-0">
+            <img 
+              src="TU_FOTO_DE_PERFIL_O_JUNGWON.jpg" 
+              alt="Lynn" 
+              className="w-full h-full rounded-full object-cover"
+            />
+          </div>
+          {/* Información de Usuario */}
+          <div className="flex-grow pt-1">
+            <h1 className="text-3xl font-bold tracking-tighter text-[#1e3a8a] mb-1 italic">Lynn.</h1>
+            <div className="text-[11px] space-y-0.5 text-blue-900/80">
+              <p>Lynn ⊹ she/her ⊹ 20 | Lara, Vnzla 🇻🇪</p>
+              <p>Informática Student (UCLA)</p>
+              <p className="flex items-center gap-1">
+                <Music className="w-3 h-3 text-indigo-400" />
+                Playing ▷ Given-Taken by EN-
+              </p>
+            </div>
+          </div>
+        </div>
 
-        .section {
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            text-align: left;
-            font-size: 0.85rem;
-            border-left: 4px solid var(--accent-color);
-        }
+        {/* Sección de Frase/Música */}
+        <div className="bg-[#f0f9ff] border-t-2 border-b-2 border-[#bae6fd] px-5 py-1.5 text-center text-[10px] uppercase font-semibold tracking-widest text-indigo-900">
+          ". . My life _ _ without you is a misery ☁️ ✧ ."
+        </div>
 
-        .btn {
-            display: block;
-            background: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
+        {/* Paneles de LIKES y DISLIKES */}
+        <div className="grid grid-cols-2 border-b-2 border-[#bae6fd]">
+          {/* LIKES (Patrón de rayas azul suave) */}
+          <div className="p-4 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36z8gAFWNZsWIFXAFYAUwBWAEAFecGCTWjBfUAAAAASUVORK5CYII=')] bg-repeat">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="bg-[#dbeafe] p-1.5 rounded-full"><Heart className="w-4 h-4 text-blue-600" /></div>
+              <h2 className="text-sm font-extrabold uppercase tracking-tight text-blue-950">LIKES</h2>
+            </div>
+            <ul className="text-[11px] space-y-1 list-none p-0 m-0 text-blue-900">
+              <li>⋆ Jungwon, Tae, Beomgyu</li>
+              <li>⋆ Webcore Aesthetic</li>
+              <li>⋆ Tailwind/React</li>
+              <li>⋆ Gatos, perritos y dormir</li>
+              <li>⋆ Given-Taken era</li>
+            </ul>
+          </div>
+          {/* DISLIKES */}
+          <div className="p-4 border-l-2 border-[#bae6fd]">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="bg-red-50 p-1.5 rounded-full"><XCircle className="w-4 h-4 text-red-600" /></div>
+              <h2 className="text-sm font-extrabold uppercase tracking-tight text-blue-950">DISLIKES</h2>
+            </div>
+            <ul className="text-[11px] space-y-1 list-none p-0 m-0 text-red-900/80">
+              <li>x Bugs en el código</li>
+              <li>x Daños en PCs/Envíos</li>
+              <li>x Fanwars y locals</li>
+              <li>x Matemáticas y locales</li>
+              <li>x Bugs en deploy</li>
+            </ul>
+          </div>
+        </div>
 
-        .btn:hover { transform: scale(1.02); background: #94b8d1; }
+        {/* Sección LOVE ZONE / Grid de Fotos */}
+        <div className="grid grid-cols-[1fr_auto] gap-4 p-5 items-start">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Mail className="w-4 h-4 text-indigo-400" />
+              <h2 className="text-xl font-bold italic tracking-tight text-[#1e3a8a]">Love zone</h2>
+            </div>
+            <div className="text-[11px] space-y-1.5 text-blue-900">
+              <p><span className="font-bold text-indigo-600">enhypen:</span> Jungwon <span className="text-indigo-400">♥</span> Heeseung</p>
+              <p><span className="font-bold text-indigo-600">txt:</span> Taehyun <span className="text-indigo-400">♥</span> Beomgyu</p>
+              <p><span className="font-bold text-indigo-600">support:</span> IVE, NewJeans, Le Sserafim</p>
+            </div>
+          </div>
+          {/* Grid de Fotos (Reemplaza src por tus PCs) */}
+          <div className="grid grid-cols-2 gap-2 flex-shrink-0 w-28">
+            <img src="https://via.placeholder.com/150/e0f2fe" alt="Jungwon" className="w-12 h-12 rounded border border-[#bae6fd] object-cover" />
+            <img src="https://via.placeholder.com/150/dbeafe" alt="Taehyun" className="w-12 h-12 rounded border border-[#bae6fd] object-cover" />
+            <img src="https://via.placeholder.com/150/dbeafe" alt="Beomgyu" className="w-12 h-12 rounded border border-[#bae6fd] object-cover" />
+            <img src="https://via.placeholder.com/150/e0f2fe" alt="PC" className="w-12 h-12 rounded border border-[#bae6fd] object-cover" />
+          </div>
+        </div>
 
-        .footer { font-size: 0.7rem; color: #a0aec0; margin-top: 20px; }
-    </style>
-</head>
-<body>
+        {/* Barra de Botones de Navegación (Estilo Y2K) */}
+        <div className="bg-[#f0f9ff] border-t-2 border-[#bae6fd] p-3 grid grid-cols-3 gap-2">
+          <a href="TU_LINK_DE_NOTION_ABOUT" target="_blank" className="bg-white border-2 border-indigo-200 text-[#1e3a8a] text-[11px] font-semibold py-1.5 px-3 rounded-full text-center hover:bg-indigo-50 hover:border-indigo-300 transition-colors">
+            about me
+          </a>
+          <a href="TU_LINK_DE_NOTION_TRADES" target="_blank" className="bg-white border-2 border-indigo-200 text-[#1e3a8a] text-[11px] font-semibold py-1.5 px-3 rounded-full text-center hover:bg-indigo-50 hover:border-indigo-300 transition-colors">
+            trades
+          </a>
+          <a href="https://instagram.com/cinnawon_" target="_blank" className="bg-[#1e3a8a] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full text-center hover:bg-[#152a6a] transition-colors flex items-center justify-center gap-1">
+            contact <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
 
-<div class="container">
-    <img src="https://via.placeholder.com/150" alt="Lynn" class="profile-img">
-    
-    <h1>¡Lynn! ⊹ cinnawon_</h1>
-    <p class="subtitle">ENHYPEN & TXT Collector | Lara, Vnzla 🇻🇪</p>
+      </div>
 
-    <div class="section">
-        <strong>📦 Shipping Info:</strong><br>
-        Envíos por MRW y Zoom (Cobro a destino).<br>
-        Entregas personales en Barquisimeto.
+      {/* Footer minimalista de la página */}
+      <p className="absolute bottom-4 text-[10px] text-indigo-400 font-mono">
+        ( Made with React/Tailwind by cinnawon_ 💻 )
+      </p>
     </div>
+  );
+};
 
-    <div class="section">
-        <strong>🛡️ Packing Method:</strong><br>
-        Sleeves libres de ácido + Toploader/Cardboard + Sobres reforzados con mucho amor.
-    </div>
-
-    <a href="LINK_DE_TU_NOTION" class="btn">⊹ Full Wishlist (Notion)</a>
-    <a href="https://instagram.com/cinnawon_" class="btn">⊹ My Proofs (IG)</a>
-    <a href="LINK_DE_PAGO_O_OTRO" class="btn">⊹ Contact Me</a>
-
-    <p class="footer">"My life without you is a misery" ☁️</p>
-</div>
-
-</body>
-</html>
+export default CinnawonY2KProfile;
